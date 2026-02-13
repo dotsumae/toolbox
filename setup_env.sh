@@ -24,6 +24,7 @@ echo 'PATH="$USER/Executables/bin:$PATH"' >> .zshrc
 echo "Preparing aliases"
 echo "source ~/.alias" >> .zshrc
 echo "alias rm='trash'" >> .alias
+echo "alias inc-nmap='nmap -A -iL targets.txt -oN nmap.txt && nmap -A -sS -sU -p 0-65535 -iL targets.txt -oN nmap_deeper.txt'" >> .alias
 echo "alias update-all='sudo apt upgrade --download-only -y ; sudo apt update && sudo apt upgrade -y'" >> .alias
 
 
