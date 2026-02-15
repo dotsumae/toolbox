@@ -1,0 +1,5 @@
+alias rm='trash'
+alias inc-nmap='nmap -A -iL targets.txt -oN nmap.txt && nmap -A -sS -sU -p 0-65535 -iL targets.txt -oN nmap_deeper.txt'
+alias update-all='sudo apt upgrade --download-only -y ; sudo apt update && sudo apt upgrade -y'
+alias setip='export IP=$(curl ifconfig.me) && LHOST=$IP'
+alias start-pentest='source $HOME/toolbox/start-pentest'
