@@ -7,13 +7,13 @@ sudo apt install tldr -y || pipx install tldr
 tldr -u
 
 echo "Installing pentest-related tools if using Kali"
-sudo apt install seclists peass autorecon zaproxy
+sudo apt install seclists peass autorecon zaproxy wordlists
 
 echo "Deploying dotfiles..."
 mkdir -p $HOME/Executables/bin/
 
 cp .alias $HOME/
-cp start-pentest $HOME/Executables/bin/
+cp bin/start-pentest $HOME/Executables/bin/
 
 echo "Updating core user config..."
 cd $HOME
