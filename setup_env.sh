@@ -18,7 +18,13 @@ cp bin/start-pentest $HOME/Executables/bin/
 echo "Updating core user config..."
 cd $HOME
 mv .zshrc .zshrc.bak
-wget -O .zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
+wget -O .screenrc   https://grml.org/console/screenrc
+wget -O .tmux.conf  https://grml.org/console/tmux.conf
+wget -O .vimrc      https://grml.org/console/vimrc
+wget -O .zshrc      https://grml.org/console/zshrc
+wget -O .zshenv     https://grml.org/console/zshenv
+wget -O .zshrc.local https://grml.org/console/zshrc.local
+#wget -O .zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
 
 echo "# Load autojump" >> .zshrc
 echo ". /usr/share/autojump/autojump.sh" >> .zshrc
