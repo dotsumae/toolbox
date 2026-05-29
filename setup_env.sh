@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Working with Kali [Y/n] ?"
 read -n 1 ans
-if [[ $ans == "n"]]; then
+if [[ $ans == "n" ]]; then
     echo "Getting the alternative mirror"
     echo "deb https://mirror.netcologne.de/kali kali-last-snapshot main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list
 fi
