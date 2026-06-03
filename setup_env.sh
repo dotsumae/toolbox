@@ -22,11 +22,9 @@ PACKAGES=(
     sd
     tldr
     topgrade
-
+    
     seclists
     peass
-    git+https://github.com/Tib3rius/AutoRecon.git
-    zaproxy
     wordlists
     nmap
     gobuster
@@ -35,6 +33,26 @@ PACKAGES=(
     smbmap
     whatweb
     sslscan
+
+    git+https://github.com/Tib3rius/AutoRecon.git
+    dnsrecon
+    enum4linux
+    feroxbuster
+    gobuster
+    impacket-scripts
+    nbtscan
+    nikto
+    nmap
+    onesixtyone
+    oscanner
+    redis-tools
+    smbclient
+    smbmap
+    snmpwalk
+    sslscan
+    svwar
+    tnscmd10g
+    whatweb
 )
 
 # Store packages that could not be installed automatically.
