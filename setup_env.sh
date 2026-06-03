@@ -25,7 +25,7 @@ PACKAGES=(
 
     seclists
     peass
-    autorecon
+    git+https://github.com/Tib3rius/AutoRecon.git
     zaproxy
     wordlists
     nmap
