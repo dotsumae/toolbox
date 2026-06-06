@@ -210,5 +210,21 @@ fi
 # Finish.
 echo
 echo "All done."
+
+while true; do
+    read -r -p 2 -p "Install desktop utilities ? [Y/n]" yn
+    case $yn in
+        [Yy]* ) 
+            sudo apt install libfuse2
+            wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+            curl -fsS https://dl.brave.com/install.sh | sh
+            curl -f https://zed.dev/install.sh | sh; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+    
+
 echo "Backups are stored in: $BACKUP_DIR"
 echo "Restart your terminal or run: exec zsh"
