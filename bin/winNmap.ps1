@@ -3,7 +3,7 @@ function Invoke-LotlPortScan {
         [Parameter(Mandatory=$true)]
         [string]$Target,
 
-        [int[]]$Ports = @(
+        [object[]]$Ports = @(
             21,22,23,25,53,80,88,110,111,135,139,143,389,443,445,464,
             587,593,636,873,993,995,1433,1521,2049,3306,3389,5432,
             5900,5985,5986,6379,8000,8080,8443,8888,9200,9300,27017
@@ -15,6 +15,61 @@ function Invoke-LotlPortScan {
 
         [switch]$Quiet
     )
+
+    function Convert-PortInput {
+        param([object[]]$InputPorts)
+
+        $FinalPorts = New-Object System.Collections.ArrayList
+
+        foreach ($Item in $InputPorts) {
+            if ($null -eq $Item) {
+                continue
+            }
+
+            $Text = $Item.ToString().Trim()
+
+            if ($Text -match '^\d+\.\.\d+$') {
+                $Parts = $Text -split '\.\.'
+                $Start = [int]$Parts[0]
+                $End = [int]$Parts[1]
+
+                foreach ($Port in $Start..$End) {
+                    if ($Port -ge 1 -and $Port -le 65535) {
+                        [void]$FinalPorts.Add($Port)
+                    }
+                }
+            }
+            elseif ($Text -match '^\d+$') {
+                $Port = [int]$Text
+
+                if ($Port -ge 1 -and $Port -le 65535) {
+                    [void]$FinalPorts.Add($Port)
+                }
+            }
+            elseif ($Text -match ',') {
+                foreach ($Part in ($Text -split ',')) {
+                    $Part = $Part.Trim()
+
+                    if ($Part -match '^\d+$') {
+                        $Port = [int]$Part
+
+                        if ($Port -ge 1 -and $Port -le 65535) {
+                            [void]$FinalPorts.Add($Port)
+                        }
+                    }
+                }
+            }
+        }
+
+        return @($FinalPorts | Sort-Object -Unique)
+    }
+
+    $Ports = Convert-PortInput -InputPorts $Ports
+
+    if (-not $Ports -or $Ports.Count -eq 0) {
+        Write-Host "[-] No valid ports supplied." -ForegroundColor Red
+        return
+    }
 
     try {
         $TargetIp = ([System.Net.Dns]::GetHostAddresses($Target) |
