@@ -138,4 +138,3 @@ function Invoke-LotlPortScan {
 
     $Results | Sort-Object Port
 }
-``
