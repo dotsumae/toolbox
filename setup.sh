@@ -22,7 +22,7 @@ PACKAGES=(
     nala
     fzf
     sd
-    tldr
+    tealdeer
     topgrade
     seclists
     peass
@@ -30,14 +30,6 @@ PACKAGES=(
     zaproxy
     wordlists
     nmap
-    gobuster
-    nikto
-    smbclient
-    smbmap
-    whatweb
-    sslscan
-    redis-tools
-    wkhtmltopdf
 )
 
 # Store packages according to their installation method.
