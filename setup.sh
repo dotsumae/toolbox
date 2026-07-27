@@ -22,7 +22,7 @@ PACKAGES=(
     sd
     tldr
     topgrade
-    
+
     seclists
     peass
     wordlists
@@ -34,7 +34,7 @@ PACKAGES=(
     whatweb
     sslscan
 
-    git+https://github.com/Tib3rius/AutoRecon.git
+    autorecon
     dnsrecon
     enum4linux
     feroxbuster
@@ -172,7 +172,9 @@ echo
 echo "Updating zsh config..."
 
 append_once "$HOME/.zshrc" ""
-append_once "$HOME/.zshrc" "# Local bootstrap additions"
+append_once "$HOME/.zshrc" "# Local additions"
+mkdir -p $HOME/Executables/bin
+cp -r ./bin/* $HOME/Executables/bin
 append_once "$HOME/.zshrc" "export PATH=\"\$HOME/Executables/bin:\$HOME/.cargo/bin:\$HOME/.local/bin:\$PATH\""
 
 if [[ -f /usr/share/autojump/autojump.sh ]]; then
@@ -216,7 +218,7 @@ then
     while true; do
         read -r -p 2 -p "Install desktop utilities ? [Y/n]" yn
         case $yn in
-            [Yy]* ) 
+            [Yy]* )
                 sudo apt install libfuse2
                 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
                 curl -fsS https://dl.brave.com/install.sh | sh
@@ -230,8 +232,8 @@ then
         echo "wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash"
         echo "curl -fsS https://dl.brave.com/install.sh | sh"
         echo "curl -f https://zed.dev/install.sh | sh"
-fi    
-    
+fi
+
 
 echo "Backups are stored in: $BACKUP_DIR"
 echo "Restart your terminal or run: exec zsh"
