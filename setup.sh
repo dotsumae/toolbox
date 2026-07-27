@@ -24,6 +24,9 @@ PACKAGES=(
     sd
     tealdeer
     topgrade
+    cargo-update #dep of topgrade
+    pkg-config #dep of cargo-update
+    libssl-dev #dep of cargo-update
     seclists
     peass
     autorecon
