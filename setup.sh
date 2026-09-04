@@ -86,7 +86,7 @@ qar() {
         return 1
     fi
     local target="$1"
-    autorecon -v --single-target --port-scans "all-tcp-ports,top-100-udp-ports" --exclude-tags long "$target"
+    autorecon -v --single-target -o "$target" --port-scans "all-tcp-ports,top-100-udp-ports" --exclude-tags long "$target"
 }
 
 EOF
