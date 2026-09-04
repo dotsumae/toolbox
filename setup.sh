@@ -42,8 +42,8 @@ fi
 
 # Aliases and shell functions
 
-ALIASES_FILE="$HOME/.alias"
-cat > "$ALIASES_FILE" <<'EOF'
+ALIASES_FILE="$HOME/.bash_aliases"
+cat >> "$ALIASES_FILE" <<'EOF'
 
 # Add an entry to /etc/hosts if missing
 #
@@ -80,17 +80,13 @@ addhost() {
 # Usage:
 #   ar 10.10.11.123
 #   ar target.htb
-ar() {
+qar() {
     if [[ $# -ne 1 ]]; then
         echo "Usage: ar <IP-or-hostname>" >&2
         return 1
     fi
     local target="$1"
-    autorecon \
-        --single-target \
-        --ports T:1-65535 \
-        --exclude-tags long \
-        "$target"
+    autorecon autorecon  --single-target --port-scans "all-tcp-ports,top-100-udp-ports" --exclude-tags long "$target"
 }
 
 EOF
@@ -101,14 +97,6 @@ if ! grep -q "zoxide init bash" "$HOME/.bashrc"; then
     echo 'eval "$(zoxide init bash)"' >> "$HOME/.bashrc"
 fi
 
-# Source custom aliases
-
-if ! grep -q ".alias" "$HOME/.bashrc"; then
-    cat >> "$HOME/.bashrc" <<'EOF'
-# CTF bootstrap aliases
-[ -f ~/.alias ] && source ~/.alias
-EOF
-fi
 
 # tealdeer
 echo "Updating tealdeer cache..."
